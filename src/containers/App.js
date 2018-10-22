@@ -8,7 +8,8 @@ class App extends Component {
     super();
     this.state = {
       city: '',
-      restaurants: []
+      restaurants: [],
+      offset: 0
     }
   }
 
@@ -16,12 +17,16 @@ class App extends Component {
     this.setState({city: event.target.value});
   }
 
-  handleSearch = () => {
-    this.props.requestRestaurants(this.state.city);
+  handleSearch = async () => {
+    await this.setState({offset: 0});
+    this.props.requestRestaurants(this.state.city, 0);
   }
 
-  handleNextPage = () => {
-    console.log('>>>>>>>>');
+  handleNextPage = async () => {
+    // console.log('>>>>>>>>');
+    const newOffset = this.state.offset + 20;
+    await this.setState({offset: newOffset});
+    await this.props.requestRestaurants(this.state.city, this.state.offset);
   }
 
   componentDidUpdate (prepProps) {
@@ -92,7 +97,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestRestaurants: (city) => dispatch(requestRestaurants(city))
+    requestRestaurants: (city, offset) => dispatch(requestRestaurants(city, offset))
   }
 }
 
