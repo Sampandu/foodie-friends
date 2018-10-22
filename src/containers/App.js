@@ -50,15 +50,26 @@ class App extends Component {
             onChange={this.onSearchChange}
           />
           <button
-            className='f4 link dim br3 ph3 pv2 mb2 dib white bg-navy ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
             type='click'
-            onClick={this.handleSearch}>Search
+            onClick={this.handleSearch}>
+            <span className='pr1'>Search</span>
           </button>
 
           <button
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
             type='click'
             onClick={this.handleNextPage}
-            >Next
+            >
+            <span className='pr1'>Next</span>
+            <svg
+              className="w1"
+              data-icon="chevronRight"
+              viewBox="0 0 32 32"
+              style={{fill:'currentcolor'}}>
+              <title>chevronRight icon</title>
+              <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
+            </svg>
           </button>
         </div>
 
