@@ -30,15 +30,18 @@ class App extends Component {
     const { restaurants } = this.state;
 
     return (
-      <div>
-        <h1>Foodie Friends</h1>
+      <div className='tc'>
+        <h1 className='f1'>Foodie Friends</h1>
 
-        <div>
+        <div className='pa2'>
           <input
-            placehold='Please enter city'
+            className='f4 pa3 ba br3 b--light-gray bg-washed-blue'
+            type='search'
+            placeholder='Please enter city'
             onChange={this.onSearchChange}
           />
           <button
+            className='f4 link dim br3 ph3 pv2 mb2 dib white bg-navy ma3'
             type='click'
             onClick={this.handleSearch}>Search
           </button>
@@ -48,8 +51,18 @@ class App extends Component {
             {
               restaurants.map((restaurant,i) => {
                 return (
-                  <div key={i}>
-                    <p>{restaurant.name}</p>
+                  <div
+                    key={i}
+                    className='bg-white dib br3 pa3 ma2 grow bw2 shadow-5'>
+                    <a href={restaurant.url} target='_blank' rel="noopener noreferrer">
+                      <img
+                        alt='restaurant'
+                        src={restaurant.image_url} width='300px' height='300px'
+                      />
+                      <div>
+                        <h4>{restaurant.name}</h4>
+                      </div>
+                    </a>
                   </div>
                 )
               })

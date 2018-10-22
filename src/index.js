@@ -7,8 +7,8 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-
 import { requestRestaurants } from './store/reducers';
+import 'tachyons';
 
 const logger = createLogger();
 const store = createStore(requestRestaurants, applyMiddleware(thunkMiddleware, logger));
