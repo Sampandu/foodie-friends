@@ -18,13 +18,19 @@ class App extends Component {
 
   handleSearch = async () => {
     await this.props.requestRestaurants();
-    await this.setState({restaurants: this.props.restaurants});
+    // await this.setState({restaurants: this.props.restaurants});
     console.log('+++++', this.state.restaurants);
+  }
 
-
+  componentDidUpdate (prepProps) {
+    if (prepProps.restaurants !== this.props.restaurants) {
+      this.setState({restaurants: this.props.restaurants});
+    }
   }
 
   render() {
+    const { restaurants } = this.state;
+
     return (
       <div>
         <h1>Foodie Friends</h1>
@@ -39,6 +45,19 @@ class App extends Component {
             onClick={this.handleSearch}>Search
           </button>
         </div>
+
+        <div>
+            {
+              restaurants.map((restaurant,i) => {
+                return (
+                  <div key={i}>
+                    <p>{restaurant.name}</p>
+                  </div>
+                )
+              })
+            }
+        </div>
+
       </div>
     )
   }
