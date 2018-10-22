@@ -16,10 +16,8 @@ class App extends Component {
     this.setState({city: event.target.value});
   }
 
-  handleSearch = async () => {
-    await this.props.requestRestaurants();
-    // await this.setState({restaurants: this.props.restaurants});
-    console.log('+++++', this.state.restaurants);
+  handleSearch = () => {
+    this.props.requestRestaurants(this.state.city);
   }
 
   componentDidUpdate (prepProps) {
@@ -71,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestRestaurants: () => dispatch(requestRestaurants())
+    requestRestaurants: (city) => dispatch(requestRestaurants(city))
   }
 }
 
