@@ -37,6 +37,17 @@ class App extends Component {
     this.setState({restaurants});
   }
 
+  handleSortByPrice = () => {
+    let restaurants = this.state.restaurants;
+    // console.log('++++++', restaurants);
+    restaurants.forEach(e => {
+      if(!e.price) e.price = ''
+    });
+    restaurants.sort((a, b) => b.price.length - a.price.length);
+    // console.log('-------', restaurants);
+    this.setState({restaurants});
+  }
+
   componentDidUpdate (prepProps) {
     if (prepProps.restaurants !== this.props.restaurants) {
       this.setState({restaurants: this.props.restaurants});
@@ -86,6 +97,13 @@ class App extends Component {
             onClick={this.handleSortByRating}>
             <span className='pr1'>Sort By Rating</span>
           </button>
+
+          <button
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            type='click'
+            onClick={this.handleSortByPrice}>
+            <span className='pr1'>Sort By Price</span>
+          </button>
         </div>
 
         <div>
@@ -103,6 +121,7 @@ class App extends Component {
                       <div>
                         <h4>{restaurant.name}</h4>
                         <p>{restaurant.rating}</p>
+                        <p>{restaurant.price}</p>
                       </div>
                     </a>
                   </div>
