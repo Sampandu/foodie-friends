@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import { requestRestaurants } from '../store/actions';
 
 class App extends Component {
   constructor() {
@@ -14,8 +16,12 @@ class App extends Component {
     this.setState({city: event.target.value});
   }
 
-  handleSearch = () => {
-    console.log('++');
+  handleSearch = async () => {
+    await this.props.requestRestaurants();
+    await this.setState({restaurants: this.props.restaurants});
+    console.log('+++++', this.state.restaurants);
+
+
   }
 
   render() {
@@ -38,4 +44,16 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    restaurants : state.restaurants
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    requestRestaurants: () => dispatch(requestRestaurants())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
