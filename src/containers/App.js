@@ -80,7 +80,11 @@ class App extends Component {
             </svg>
           </button>
 
-          <button type='click' onClick={this.handleSortByRating}>Sort By Rating
+          <button
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            type='click'
+            onClick={this.handleSortByRating}>
+            <span className='pr1'>Sort By Rating</span>
           </button>
         </div>
 
