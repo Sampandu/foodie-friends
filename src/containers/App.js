@@ -31,6 +31,9 @@ class App extends Component {
 
   handleSortByRating = () => {
     let restaurants = this.state.restaurants;
+    restaurants.forEach(e => {
+      if(!e.rating) e.rating = 0;
+    })
     // console.log('++++++', restaurants);
     restaurants.sort((a,b) => b.rating - a.rating);
     // console.log('-------', restaurants);
