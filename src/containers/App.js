@@ -29,6 +29,10 @@ class App extends Component {
     await this.props.requestRestaurants(this.state.city, this.state.offset);
   }
 
+  handleSortByRating = () => {
+    console.log('++++++');
+  }
+
   componentDidUpdate (prepProps) {
     if (prepProps.restaurants !== this.props.restaurants) {
       this.setState({restaurants: this.props.restaurants});
@@ -70,6 +74,9 @@ class App extends Component {
               <title>chevronRight icon</title>
               <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
             </svg>
+          </button>
+
+          <button type='click' onClick={this.handleSortByRating}>Sort By Rating
           </button>
         </div>
 
