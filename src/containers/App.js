@@ -30,7 +30,11 @@ class App extends Component {
   }
 
   handleSortByRating = () => {
-    console.log('++++++');
+    let restaurants = this.state.restaurants;
+    // console.log('++++++', restaurants);
+    restaurants.sort((a,b) => b.rating - a.rating);
+    // console.log('-------', restaurants);
+    this.setState({restaurants});
   }
 
   componentDidUpdate (prepProps) {
@@ -94,6 +98,7 @@ class App extends Component {
                       />
                       <div>
                         <h4>{restaurant.name}</h4>
+                        <p>{restaurant.rating}</p>
                       </div>
                     </a>
                   </div>
