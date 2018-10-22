@@ -20,6 +20,10 @@ class App extends Component {
     this.props.requestRestaurants(this.state.city);
   }
 
+  handleNextPage = () => {
+    console.log('>>>>>>>>');
+  }
+
   componentDidUpdate (prepProps) {
     if (prepProps.restaurants !== this.props.restaurants) {
       this.setState({restaurants: this.props.restaurants});
@@ -44,6 +48,12 @@ class App extends Component {
             className='f4 link dim br3 ph3 pv2 mb2 dib white bg-navy ma3'
             type='click'
             onClick={this.handleSearch}>Search
+          </button>
+
+          <button
+            type='click'
+            onClick={this.handleNextPage}
+            >Next
           </button>
         </div>
 
