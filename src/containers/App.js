@@ -11,8 +11,11 @@ class App extends Component {
   }
 
   onSearchChange = (event) => {
-    console.log(event.target.value);
-    // this.setState({city: event.target.value});
+    this.setState({city: event.target.value});
+  }
+
+  handleSearch = () => {
+    console.log('++');
   }
 
   render() {
@@ -25,6 +28,10 @@ class App extends Component {
             placehold='Please enter city'
             onChange={this.onSearchChange}
           />
+          <button
+            type='click'
+            onClick={this.handleSearch}>Search
+          </button>
         </div>
       </div>
     )
