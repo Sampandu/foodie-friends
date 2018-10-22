@@ -29,6 +29,14 @@ class App extends Component {
     await this.props.requestRestaurants(this.state.city, this.state.offset);
   }
 
+  handleSortByRating = () => {
+    let restaurants = this.state.restaurants;
+    // console.log('++++++', restaurants);
+    restaurants.sort((a,b) => b.rating - a.rating);
+    // console.log('-------', restaurants);
+    this.setState({restaurants});
+  }
+
   componentDidUpdate (prepProps) {
     if (prepProps.restaurants !== this.props.restaurants) {
       this.setState({restaurants: this.props.restaurants});
@@ -71,6 +79,13 @@ class App extends Component {
               <path d="M12 1 L26 16 L12 31 L8 27 L18 16 L8 5 z"></path>
             </svg>
           </button>
+
+          <button
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            type='click'
+            onClick={this.handleSortByRating}>
+            <span className='pr1'>Sort By Rating</span>
+          </button>
         </div>
 
         <div>
@@ -87,6 +102,7 @@ class App extends Component {
                       />
                       <div>
                         <h4>{restaurant.name}</h4>
+                        <p>{restaurant.rating}</p>
                       </div>
                     </a>
                   </div>
