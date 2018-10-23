@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { requestRestaurants } from '../store/actions';
+import Cardlist from '../components/Cardlist';
+import Scroll from '../components/Scroll';
 
 class App extends Component {
   constructor() {
@@ -23,7 +25,6 @@ class App extends Component {
   }
 
   handleNextPage = async () => {
-    // console.log('>>>>>>>>');
     const newOffset = this.state.offset + 20;
     await this.setState({offset: newOffset});
     await this.props.requestRestaurants(this.state.city, this.state.offset);
@@ -34,20 +35,16 @@ class App extends Component {
     restaurants.forEach(e => {
       if(!e.rating) e.rating = 0;
     })
-    // console.log('++++++', restaurants);
     restaurants.sort((a,b) => b.rating - a.rating);
-    // console.log('-------', restaurants);
     this.setState({restaurants});
   }
 
   handleSortByPrice = () => {
     let restaurants = this.state.restaurants;
-    // console.log('++++++', restaurants);
     restaurants.forEach(e => {
       if(!e.price) e.price = ''
     });
     restaurants.sort((a, b) => b.price.length - a.price.length);
-    // console.log('-------', restaurants);
     this.setState({restaurants});
   }
 
@@ -62,24 +59,24 @@ class App extends Component {
 
     return (
       <div className='tc'>
-        <h1 className='f1'>Foodie  Friends</h1>
+        <h1 className='f1 pt2 pb1 mb0'>Foodie  Friends</h1>
 
-        <div className='pa2'>
+        <div className='pt1 pb2 ml6 nav'>
           <input
-            className='f4 pa3 ba br3 b--light-gray bg-washed-blue'
+            className='f4 pa2 ba br3 b--light-gray bg-washed-blue mr1'
             type='search'
             placeholder='Please enter city'
             onChange={this.onSearchChange}
           />
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
             onClick={this.handleSearch}>
             <span className='pr1'>Search</span>
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
             onClick={this.handleNextPage}
             >
@@ -94,57 +91,28 @@ class App extends Component {
             </svg>
           </button>
 
-          <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
-            type='click'
-            onClick={this.handleSortByRating}>
-            <span className='pr1'>Sort By Rating</span>
-          </button>
-
-          <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
-            type='click'
-            onClick={this.handleSortByPrice}>
-            <span className='pr1'>Sort By Price</span>
-          </button>
         </div>
 
-        <div>
-            {
-              restaurants.map((restaurant,i) => {
-                return (
-                  <div
-                    key={i}
-                    className='bg-white dib br3 pa2 ma2 grow bw2 shadow-5'
-                    width='288px'
-                    height='380px'>
-                    <a href={restaurant.url} target='_blank' rel="noopener noreferrer">
-                      <img
-                        alt='restaurant'
-                        src={restaurant.image_url}
-                        width='288px'
-                        height='288px'
-                      />
-                      <h4
-                        className='ma1 tl'
-                        style={{wordWrap: 'break-word',
-                                width:'288px',
-                                color:'black',
-                                textDecoration:'none'}}
-                      >
-                        {restaurant.name}
-                      </h4>
-                      <ul
-                        className='ma1 tl'
-                        style={{color:'black', textDecoration:'none'}} >
-                        <li>Rating: {restaurant.rating}</li>
-                        <li>Price: {restaurant.price}</li>
-                      </ul>
-                    </a>
-                  </div>
-                )
-              })
-            }
+        <Scroll>
+          <Cardlist restaurants={restaurants}/>
+        </Scroll>
+
+        <div className='mt2'>
+          <button
+            className='f5 no-underline black bg-light-yellow hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
+            type='click'
+            onClick={this.handleSortByRating}
+          >
+            <span className='pr1'>SortByRating</span>
+          </button>
+
+          <button
+            className='f5 no-underline black bg-light-yellow hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
+            type='click'
+            onClick={this.handleSortByPrice}
+          >
+            <span className='pr1'>SortByPrice</span>
+          </button>
         </div>
 
       </div>
