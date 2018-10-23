@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { requestRestaurants } from '../store/actions';
+import Cardlist from '../components/Cardlist';
 
 class App extends Component {
   constructor() {
@@ -109,7 +110,10 @@ class App extends Component {
           </button>
         </div>
 
-        <div>
+        <Cardlist restaurants={restaurants}/>
+
+
+        {/*<div>
             {
               restaurants.map((restaurant,i) => {
                 return (
@@ -145,8 +149,7 @@ class App extends Component {
                 )
               })
             }
-        </div>
-
+          </div>*/}
       </div>
     )
   }
