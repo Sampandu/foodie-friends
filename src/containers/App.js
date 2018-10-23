@@ -3,6 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { requestRestaurants } from '../store/actions';
 import Cardlist from '../components/Cardlist';
+import Scroll from '../components/Scroll';
 
 class App extends Component {
   constructor() {
@@ -63,24 +64,24 @@ class App extends Component {
 
     return (
       <div className='tc'>
-        <h1 className='f1'>Foodie  Friends</h1>
+        <h1 className='f1 pt2 pb1 mb0'>Foodie  Friends</h1>
 
-        <div className='pa2'>
+        <div className='pt1 pb2'>
           <input
-            className='f4 pa3 ba br3 b--light-gray bg-washed-blue'
+            className='f4 pa2 ba br3 b--light-gray bg-washed-blue'
             type='search'
             placeholder='Please enter city'
             onChange={this.onSearchChange}
           />
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
             type='click'
             onClick={this.handleSearch}>
             <span className='pr1'>Search</span>
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
             type='click'
             onClick={this.handleNextPage}
             >
@@ -96,60 +97,24 @@ class App extends Component {
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
             type='click'
             onClick={this.handleSortByRating}>
             <span className='pr1'>Sort By Rating</span>
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center pa3 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
             type='click'
             onClick={this.handleSortByPrice}>
             <span className='pr1'>Sort By Price</span>
           </button>
         </div>
 
-        <Cardlist restaurants={restaurants}/>
+        <Scroll>
+          <Cardlist restaurants={restaurants}/>
+        </Scroll>
 
-
-        {/*<div>
-            {
-              restaurants.map((restaurant,i) => {
-                return (
-                  <div
-                    key={i}
-                    className='bg-white dib br3 pa2 ma2 grow bw2 shadow-5'
-                    width='288px'
-                    height='380px'>
-                    <a href={restaurant.url} target='_blank' rel="noopener noreferrer">
-                      <img
-                        alt='restaurant'
-                        src={restaurant.image_url}
-                        width='288px'
-                        height='288px'
-                      />
-                      <h4
-                        className='ma1 tl'
-                        style={{wordWrap: 'break-word',
-                                width:'288px',
-                                color:'black',
-                                textDecoration:'none'}}
-                      >
-                        {restaurant.name}
-                      </h4>
-                      <ul
-                        className='ma1 tl'
-                        style={{color:'black', textDecoration:'none'}} >
-                        <li>Rating: {restaurant.rating}</li>
-                        <li>Price: {restaurant.price}</li>
-                      </ul>
-                    </a>
-                  </div>
-                )
-              })
-            }
-          </div>*/}
       </div>
     )
   }
