@@ -1,7 +1,25 @@
+@font-face {
+  font-family: 'Briany Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Briany Regular'), url('Briany Font (Regular) by Andrian (7NTypes).woff') format('woff');
+}
+
+
 .App {
   text-align: center;
 }
 
+h1 {
+  font-family: 'Briany Regular';
+  font-weight: 200;
+  color: white;
+}
+
 button {
   cursor: pointer;
+}
+
+li {
+  list-style: none;
 }

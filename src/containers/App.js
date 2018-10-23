@@ -62,7 +62,7 @@ class App extends Component {
 
     return (
       <div className='tc'>
-        <h1 className='f1'>Foodie Friends</h1>
+        <h1 className='f1'>Foodie  Friends</h1>
 
         <div className='pa2'>
           <input
@@ -115,17 +115,31 @@ class App extends Component {
                 return (
                   <div
                     key={i}
-                    className='bg-white dib br3 pa3 ma2 grow bw2 shadow-5'>
+                    className='bg-white dib br3 pa2 ma2 grow bw2 shadow-5'
+                    width='288px'
+                    height='380px'>
                     <a href={restaurant.url} target='_blank' rel="noopener noreferrer">
                       <img
                         alt='restaurant'
-                        src={restaurant.image_url} width='300px' height='300px'
+                        src={restaurant.image_url}
+                        width='288px'
+                        height='288px'
                       />
-                      <div>
-                        <h4>{restaurant.name}</h4>
-                        <p>{restaurant.rating}</p>
-                        <p>{restaurant.price}</p>
-                      </div>
+                      <h4
+                        className='ma1 tl'
+                        style={{wordWrap: 'break-word',
+                                width:'288px',
+                                color:'black',
+                                textDecoration:'none'}}
+                      >
+                        {restaurant.name}
+                      </h4>
+                      <ul
+                        className='ma1 tl'
+                        style={{color:'black', textDecoration:'none'}} >
+                        <li>Rating: {restaurant.rating}</li>
+                        <li>Price: {restaurant.price}</li>
+                      </ul>
                     </a>
                   </div>
                 )
