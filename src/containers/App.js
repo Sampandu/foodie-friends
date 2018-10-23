@@ -25,7 +25,6 @@ class App extends Component {
   }
 
   handleNextPage = async () => {
-    // console.log('>>>>>>>>');
     const newOffset = this.state.offset + 20;
     await this.setState({offset: newOffset});
     await this.props.requestRestaurants(this.state.city, this.state.offset);
@@ -36,20 +35,16 @@ class App extends Component {
     restaurants.forEach(e => {
       if(!e.rating) e.rating = 0;
     })
-    // console.log('++++++', restaurants);
     restaurants.sort((a,b) => b.rating - a.rating);
-    // console.log('-------', restaurants);
     this.setState({restaurants});
   }
 
   handleSortByPrice = () => {
     let restaurants = this.state.restaurants;
-    // console.log('++++++', restaurants);
     restaurants.forEach(e => {
       if(!e.price) e.price = ''
     });
     restaurants.sort((a, b) => b.price.length - a.price.length);
-    // console.log('-------', restaurants);
     this.setState({restaurants});
   }
 
@@ -66,7 +61,7 @@ class App extends Component {
       <div className='tc'>
         <h1 className='f1 pt2 pb1 mb0'>Foodie  Friends</h1>
 
-        <div className='pt1 pb2 mr5 nav'>
+        <div className='pt1 pb2 ml6 nav'>
           <input
             className='f4 pa2 ba br3 b--light-gray bg-washed-blue mr1'
             type='search'
@@ -96,24 +91,29 @@ class App extends Component {
             </svg>
           </button>
 
-          <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
-            type='click'
-            onClick={this.handleSortByRating}>
-            <span className='pr1'>SortByRating</span>
-          </button>
-
-          <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
-            type='click'
-            onClick={this.handleSortByPrice}>
-            <span className='pr1'>SortByPrice</span>
-          </button>
         </div>
 
         <Scroll>
           <Cardlist restaurants={restaurants}/>
         </Scroll>
+
+        <div className='mt2'>
+          <button
+            className='f5 no-underline black bg-light-yellow hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
+            type='click'
+            onClick={this.handleSortByRating}
+          >
+            <span className='pr1'>SortByRating</span>
+          </button>
+
+          <button
+            className='f5 no-underline black bg-light-yellow hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
+            type='click'
+            onClick={this.handleSortByPrice}
+          >
+            <span className='pr1'>SortByPrice</span>
+          </button>
+        </div>
 
       </div>
     )
