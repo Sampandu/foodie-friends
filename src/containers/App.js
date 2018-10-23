@@ -91,13 +91,6 @@ class App extends Component {
             </svg>
           </button>
 
-        </div>
-
-        <Scroll>
-          <Cardlist restaurants={restaurants}/>
-        </Scroll>
-
-        <div className='mt2'>
           <button
             className='f5 no-underline black bg-light-yellow hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
@@ -114,6 +107,11 @@ class App extends Component {
             <span className='pr1'>SortByPrice</span>
           </button>
         </div>
+
+        <Scroll>
+          <Cardlist restaurants={restaurants}/>
+        </Scroll>
+
 
       </div>
     )
