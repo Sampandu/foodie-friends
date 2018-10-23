@@ -66,22 +66,22 @@ class App extends Component {
       <div className='tc'>
         <h1 className='f1 pt2 pb1 mb0'>Foodie  Friends</h1>
 
-        <div className='pt1 pb2'>
+        <div className='pt1 pb2 mr5 nav'>
           <input
-            className='f4 pa2 ba br3 b--light-gray bg-washed-blue'
+            className='f4 pa2 ba br3 b--light-gray bg-washed-blue mr1'
             type='search'
             placeholder='Please enter city'
             onChange={this.onSearchChange}
           />
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
             onClick={this.handleSearch}>
             <span className='pr1'>Search</span>
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
             onClick={this.handleNextPage}
             >
@@ -97,17 +97,17 @@ class App extends Component {
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
             onClick={this.handleSortByRating}>
-            <span className='pr1'>Sort By Rating</span>
+            <span className='pr1'>SortByRating</span>
           </button>
 
           <button
-            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma3'
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
             type='click'
             onClick={this.handleSortByPrice}>
-            <span className='pr1'>Sort By Price</span>
+            <span className='pr1'>SortByPrice</span>
           </button>
         </div>
 

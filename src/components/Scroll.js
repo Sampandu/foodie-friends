@@ -8,7 +8,7 @@ const Scroll = (props) => {
           'borderBottom': '2px solid gray',
           margin: 'auto',
           width: '90%',
-          height: '550px'}}>
+          height: '600px'}}>
       {props.children}
     </div>
   )
