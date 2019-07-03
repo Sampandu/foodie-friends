@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux';
 import { requestRestaurants } from '../store/actions';
+import Radar from '../util'
 import Cardlist from '../components/Cardlist';
 import Scroll from '../components/Scroll';
+
 
 class App extends Component {
   constructor() {
@@ -11,7 +13,9 @@ class App extends Component {
     this.state = {
       city: '',
       restaurants: [],
-      offset: 0
+      offset: 0,
+      latitude: 0,
+      longitude: 0
     }
   }
 
@@ -24,10 +28,22 @@ class App extends Component {
     this.props.requestRestaurants(this.state.city, 0);
   }
 
+  handleSearchNearMe = async () => {
+    const {latitude, longitude} = this.state
+    console.log('handle lat', this.state.latitude)
+    console.log('handle long', this.state.longitude)
+    this.props.requestRestaurants('', 0, latitude, longitude);
+  }
+
+
   handleNextPage = async () => {
     const newOffset = this.state.offset + 20;
     await this.setState({offset: newOffset});
-    await this.props.requestRestaurants(this.state.city, this.state.offset);
+    if (this.state.city) {
+      await this.props.requestRestaurants(this.state.city, this.state.offset);
+    } else {
+      await this.props.requestRestaurants('', this.state.offset, this.state.latitude, this.state.longitude);
+    }
   }
 
   handleSortByRating = () => {
@@ -52,6 +68,16 @@ class App extends Component {
     if (prepProps.restaurants !== this.props.restaurants) {
       this.setState({restaurants: this.props.restaurants});
     }
+  }
+
+  componentDidMount () {
+    const self = this
+    Radar.trackOnce(function(status, location, user, events) {
+      self.setState({
+        latitude: location.latitude,
+        longitude: location.longitude
+      })
+    })
   }
 
   render() {
@@ -108,10 +134,18 @@ class App extends Component {
           </button>
         </div>
 
+        <div>
+          <button
+            className='f5 no-underline black bg-lightest-blue hover-bg-light-blue hover-white inline-flex items-center ph1 pv2 ba border-box br3 ma1'
+            type='click'
+            onClick={this.handleSearchNearMe}>
+            <span className='pr1'>Near me</span>
+          </button>
+        </div>
+
         <Scroll>
           <Cardlist restaurants={restaurants}/>
         </Scroll>
-
 
       </div>
     )
@@ -126,7 +160,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestRestaurants: (city, offset) => dispatch(requestRestaurants(city, offset))
+    requestRestaurants: (city, offset, latitude, longitude) => dispatch(requestRestaurants(city, offset, latitude, longitude))
   }
 }
 
