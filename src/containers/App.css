@@ -13,7 +13,8 @@
 h1 {
   font-family: 'Briany Regular';
   font-weight: 200;
-  color: white;
+  /* color: white; */
+  color: rgba(7,27,82,1)
 }
 
 button {
