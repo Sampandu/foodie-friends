@@ -5,6 +5,7 @@ import { requestRestaurants } from '../store/actions';
 import Radar from '../util'
 import Cardlist from '../components/Cardlist';
 import Scroll from '../components/Scroll';
+import Footer from '../components/Footer';
 
 
 class App extends Component {
@@ -144,7 +145,7 @@ class App extends Component {
         <Scroll>
           <Cardlist restaurants={restaurants}/>
         </Scroll>
-
+        <Footer />
       </div>
     )
   }
