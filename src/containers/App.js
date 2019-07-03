@@ -28,10 +28,8 @@ class App extends Component {
     this.props.requestRestaurants(this.state.city, 0);
   }
 
-  handleSearchNearMe = async () => {
+  handleSearchNearMe = () => {
     const {latitude, longitude} = this.state
-    console.log('handle lat', this.state.latitude)
-    console.log('handle long', this.state.longitude)
     this.props.requestRestaurants('', 0, latitude, longitude);
   }
 
