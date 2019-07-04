@@ -9,7 +9,7 @@ export default function Footer() {
           className="link white-80 hover-light-purple"
           href="https://radar.io"
         >
-          Positioning provided by Radar.io
+          Positioning powered by Radar.io
         </a>
       </p>
     </footer>
