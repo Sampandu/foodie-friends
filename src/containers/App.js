@@ -31,8 +31,17 @@ class App extends Component {
   }
 
   handleSearchNearMe = () => {
-    const {latitude, longitude} = this.state
-    this.props.requestRestaurants('', 0, latitude, longitude);
+    const self = this
+    Radar.trackOnce(function(status, location, user, events) {
+      if(status === 'SUCCESS') {
+        console.log('latitude + longitude', location)
+        self.setState({
+          latitude: location.latitude,
+          longitude: location.longitude
+        })
+        self.props.requestRestaurants('', 0, location.latitude, location.longitude);
+      }
+    })
   }
 
 
@@ -68,16 +77,6 @@ class App extends Component {
     if (prepProps.restaurants !== this.props.restaurants) {
       this.setState({restaurants: this.props.restaurants});
     }
-  }
-
-  componentDidMount () {
-    const self = this
-    Radar.trackOnce(function(status, location, user, events) {
-      self.setState({
-        latitude: location.latitude,
-        longitude: location.longitude
-      })
-    })
   }
 
   render() {
